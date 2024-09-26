@@ -16,6 +16,8 @@ function Tree(array) {
 function buildTree(array) {
 	array.sort((a, b) => a - b);
 	array = removeDuplicates(array);
+	let balancedBinaryTree = balancedBinarySearchTree(array, 0, array.length - 1);
+	return balancedBinaryTree;
 }
 
 function balancedBinarySearchTree(arr, start, end) {
