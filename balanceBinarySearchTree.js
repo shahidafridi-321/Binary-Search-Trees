@@ -13,7 +13,21 @@ function Tree(array) {
 	};
 }
 
+function buildTree(array) {
+	array.sort((a, b) => a - b);
+	array = removeDuplicates(array);
+}
 
+function balancedBinarySearchTree(arr, start, end) {
+	if (start > end) return null;
+	let mid = Math.floor(start + end / 2);
+
+	let node = Node(arr[mid]);
+	node.left = balancedBinarySearchTree(arr, start, mid - 1);
+	node.right = balancedBinarySearchTree(arr, mid + 1, end);
+
+	return node;
+}
 
 function removeDuplicates(array) {
 	let newArray = [];
