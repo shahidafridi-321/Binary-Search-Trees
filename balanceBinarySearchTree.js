@@ -16,8 +16,7 @@ function Tree(array) {
 function buildTree(array) {
 	array.sort((a, b) => a - b);
 	array = removeDuplicates(array);
-	let balancedBinaryTree = balancedBinarySearchTree(array, 0, array.length - 1);
-	return balancedBinaryTree;
+	return balancedBinarySearchTree(array, 0, array.length - 1);
 }
 
 function balancedBinarySearchTree(arr, start, end) {
@@ -42,7 +41,8 @@ function removeDuplicates(array) {
 }
 
 let data = [1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324];
-let node = buildTree(data);
+let data1 = [1, 2, 3, 4,5,6,7,8,9];
+let node = buildTree(data1);
 
 const prettyPrint = (node, prefix = "", isLeft = true) => {
 	if (node === null) {
@@ -56,4 +56,4 @@ const prettyPrint = (node, prefix = "", isLeft = true) => {
 		prettyPrint(node.left, `${prefix}${isLeft ? "    " : "│   "}`, true);
 	}
 };
-// prettyPrint(node);
+prettyPrint(node);
