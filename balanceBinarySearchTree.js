@@ -41,8 +41,9 @@ function removeDuplicates(array) {
 }
 
 let data = [1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324];
-let data1 = [1, 2, 3, 4,5,6,7,8,9];
-let node = buildTree(data1);
+let data1 = [1, 2, 3, 4];
+let data2 = [];
+let tree = buildTree(data1);
 
 const prettyPrint = (node, prefix = "", isLeft = true) => {
 	if (node === null) {
@@ -56,4 +57,17 @@ const prettyPrint = (node, prefix = "", isLeft = true) => {
 		prettyPrint(node.left, `${prefix}${isLeft ? "    " : "│   "}`, true);
 	}
 };
-prettyPrint(node);
+
+function insert(root, value) {
+	if (root === null) {
+		return Node(value);
+	}
+	if (value > root.data) {
+		root.right = insert(root.right, value);
+	} else if (value <= root.data) {
+		root.left = insert(root.left, value);
+	}
+	return root;
+}
+insert(tree, 3);
+prettyPrint(tree);
