@@ -58,16 +58,33 @@ const prettyPrint = (node, prefix = "", isLeft = true) => {
 	}
 };
 
-function insert(root, value) {
-	if (root === null) {
-		return Node(value);
-	}
+/* function insert(root, value) {
+	if (root === null) return Node(value);
 	if (value > root.data) {
 		root.right = insert(root.right, value);
 	} else if (value <= root.data) {
 		root.left = insert(root.left, value);
 	}
 	return root;
+} */
+
+// Using iterating approach
+function insert(root, value) {
+	if (root === null) return Node(value);
+	let parent = null;
+	let currentRoot = root;
+	while (currentRoot !== null) {
+		parent = currentRoot;
+		if (currentRoot.data > value) currentRoot = currentRoot.left;
+		else if (currentRoot.data < value) currentRoot = currentRoot.right;
+		else return root;
+	}
+	if (parent.data < value) parent.right = Node(value);
+	else parent.left = Node(value);
+	return root;
 }
-insert(tree, 3);
+
+insert(tree, 5);
+insert(tree, 33);
+insert(tree, 13);
 prettyPrint(tree);
