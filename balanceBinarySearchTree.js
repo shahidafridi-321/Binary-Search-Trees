@@ -84,7 +84,12 @@ function insert(root, value) {
 	return root;
 }
 
-insert(tree, 5);
+function deleteItem(root, value) {
+	if (root === null) return root;
+	
+}
+
+/* insert(tree, 5);
 insert(tree, 33);
 insert(tree, 13);
-prettyPrint(tree);
+prettyPrint(tree); */
