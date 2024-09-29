@@ -1,3 +1,4 @@
+// Node factory for creating new nodes
 function Node(data) {
 	return {
 		data,
@@ -6,19 +7,22 @@ function Node(data) {
 	};
 }
 
+// Tree Factory creates tree of the given array
 function Tree(array) {
-	let root = buildTree(array);
+	let tree = buildTree(array);
 	return {
-		root,
+		tree,
 	};
 }
 
+// takes array first sorts it, remove duplicates and returns a complete balance BST
 function buildTree(array) {
 	array.sort((a, b) => a - b);
 	array = removeDuplicates(array);
 	return balancedBinarySearchTree(array, 0, array.length - 1);
 }
 
+// creates BST of the given array (helper function to buildTree function)
 function balancedBinarySearchTree(arr, start, end) {
 	if (start > end) return null;
 	let mid = Math.floor((start + end) / 2);
@@ -30,6 +34,7 @@ function balancedBinarySearchTree(arr, start, end) {
 	return node;
 }
 
+// Removes Duplicates of an array (helper function to buildTree function)
 function removeDuplicates(array) {
 	let newArray = [];
 	array = array.forEach((element) => {
@@ -40,6 +45,7 @@ function removeDuplicates(array) {
 	return newArray;
 }
 
+// Visiualize the Tree
 const prettyPrint = (node, prefix = "", isLeft = true) => {
 	if (node === null) {
 		return;
@@ -53,18 +59,20 @@ const prettyPrint = (node, prefix = "", isLeft = true) => {
 	}
 };
 
-/* function insert(root, value) {
-	if (root === null) return Node(value);
+// Inserts value to the tree using recursive way
+function insert(root, value) {
+	if (root === null) return Node(value); // if tree is empty create a ned node
 	if (value > root.data) {
-		root.right = insert(root.right, value);
+		root.right = insert(root.right, value); // if the value is greater than root value  insert in right sub-tree
 	} else if (value <= root.data) {
-		root.left = insert(root.left, value);
+		root.left = insert(root.left, value); // if the value is less than root value insert in left sub-tree
 	}
 	return root;
-} */
+}
 
+// Inserts value to the tree
 // Using iterating approach
-function insert(root, value) {
+/* function insert(root, value) {
 	if (root === null) return Node(value);
 	let parent = null;
 	let currentRoot = root;
@@ -77,8 +85,9 @@ function insert(root, value) {
 	if (parent.data < value) parent.right = Node(value);
 	else parent.left = Node(value);
 	return root;
-}
+} */
 
+// This function finds the smallest value in the right sub-tree and returns it
 function findInorderSuccessor(node) {
 	if (node.left !== null) {
 		node = node.left;
@@ -86,25 +95,33 @@ function findInorderSuccessor(node) {
 	return node;
 }
 
+// deletes item in a Tree
 function deleteItem(root, value) {
-	if (root === null) return root;
+	if (root === null) return root; // if the root is empty, nothing to delete
 
 	if (root.data > value) {
-		root.left = deleteItem(root.left, value);
+		root.left = deleteItem(root.left, value); // value less then root value delete in left sub-tree
 	} else if (root.data < value) {
-		root.right = deleteItem(root.right, value);
+		root.right = deleteItem(root.right, value); // value greater then root value delete in right sub-tree
 	} else {
-		if (root.left === null) return root.right;
-		else if (root.right === null) return root.left;
+		// having only single child or no child node
+		if (root.left === null) return root.right; // if his only right child
+		else if (root.right === null) return root.left; // if his only left child
 
+		// if his both the children nodes the find the in-order successor
+		// smallest value in the right sub-tree using findInorderSuccessor function
 		let temp = findInorderSuccessor(root.right);
+
+		//copy the value to the right sub-node
 		root.data = temp.data;
 
+		// delete the copied node
 		root.right = deleteItem(root.right, temp.data);
 	}
 	return root;
 }
 
+// Some data for testing
 let data = [1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324];
 let data1 = [50, 30, 70, 20, 40, 60, 80];
 let data2 = [];
@@ -112,6 +129,8 @@ let tree = buildTree(data1);
 
 /* insert(tree, 5);
 insert(tree, 33);
-insert(tree, 13);*/
+insert(tree, 13);
 let res = deleteItem(tree, 30);
 prettyPrint(tree);
+
+*/
