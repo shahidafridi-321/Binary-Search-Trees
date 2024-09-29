@@ -137,17 +137,41 @@ function find(root, value) {
 	return root;
 }
 
+// Treverse the Tree as Breadth-first
+function levelOrder(root, callBack) {
+	if (!callBack) throw new Error("Callback is required"); // if no callback is provided throws error
+
+	// BASE CASE
+	if (root == null) return root; // in case the root is empty
+	let queue = []; // initialize a queue
+
+	queue.push(root); // add the input root to the queue
+	while (queue.length !== 0) {
+		// repeat until queue is empty
+		let currentNode = queue[0]; // set current node to the first element in queue
+
+		callBack(currentNode); // a callback function is called for the currentNode
+		if (currentNode.left !== null) {
+			queue.push(currentNode.left); // if currentNode left child exists add it to the queue
+		}
+		if (currentNode.right !== null) {
+			queue.push(currentNode.right); //if currentNode right child exists add it to the queue
+		}
+		queue.shift(); // remove the visited/ read node
+	}
+}
+
 // Some data for testing
 let data = [1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324];
 let data1 = [50, 30, 70, 20, 40, 60, 80];
 let data2 = [];
-let tree = buildTree(data);
+let tree = buildTree(data1);
+
+levelOrder(tree, callBackToLevelOrder);
 
 /* insert(tree, 5);
 insert(tree, 33);
 insert(tree, 13);
 let res = deleteItem(tree, 30);*/
-rrr = find(tree, 5);
-console.log(rrr);
 
 /* prettyPrint(rrr); */
