@@ -86,6 +86,25 @@ function findInorderSuccessor(node) {
 	return node;
 }
 
+function deleteItem(root, value) {
+	if (root === null) return root;
+
+	if (root.data > value) {
+		root.left = deleteItem(root.left, value);
+	} else if (root.data < value) {
+		root.right = deleteItem(root.right, value);
+	} else {
+		if (root.left === null) return root.right;
+		else if (root.right === null) return root.left;
+
+		let temp = findInorderSuccessor(root.right);
+		root.data = temp.data;
+
+		root.right = deleteItem(root.right, temp.data);
+	}
+	return root;
+}
+
 let data = [1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324];
 let data1 = [50, 30, 70, 20, 40, 60, 80];
 let data2 = [];
