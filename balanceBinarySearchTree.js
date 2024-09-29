@@ -121,16 +121,30 @@ function deleteItem(root, value) {
 	return root;
 }
 
+// finds a given node in the given tree
+function find(root, value) {
+	if (root == null) return root; // if tree is empty returns null
+
+	if (root.data > value) {
+		root = find(root.left, value);
+	} else if (root.data < value) {
+		root = find(root.right, value);
+	}
+
+	return root;
+}
+
 // Some data for testing
 let data = [1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324];
 let data1 = [50, 30, 70, 20, 40, 60, 80];
 let data2 = [];
-let tree = buildTree(data1);
+let tree = buildTree(data);
 
 /* insert(tree, 5);
 insert(tree, 33);
 insert(tree, 13);
-let res = deleteItem(tree, 30);
-prettyPrint(tree);
+let res = deleteItem(tree, 30);*/
+rrr = find(tree, 5);
+console.log(rrr);
 
-*/
+/* prettyPrint(rrr); */
