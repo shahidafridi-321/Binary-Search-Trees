@@ -138,8 +138,9 @@ function find(root, value) {
 }
 
 // Treverse the Tree as Breadth-first
+// Iterator way
 function levelOrder(root, callBack) {
-	if (!callBack) throw new Error("Callback is required"); // if no callback is provided throws error
+	if (typeof callBack !== "function") throw new Error("Callback is required"); // if no callback is provided throws error
 
 	// BASE CASE
 	if (root == null) return root; // in case the root is empty
@@ -161,13 +162,17 @@ function levelOrder(root, callBack) {
 	}
 }
 
+function levelOrderRecursion(root, callBack) {
+	if (root == null) return;
+}
+
 // Some data for testing
 let data = [1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324];
 let data1 = [50, 30, 70, 20, 40, 60, 80];
 let data2 = [];
 let tree = buildTree(data1);
 
-levelOrder(tree, callBackToLevelOrder);
+levelOrderRecursion(tree, prettyPrint);
 
 /* insert(tree, 5);
 insert(tree, 33);
