@@ -40,11 +40,6 @@ function removeDuplicates(array) {
 	return newArray;
 }
 
-let data = [1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324];
-let data1 = [1, 2, 3, 4];
-let data2 = [];
-let tree = buildTree(data1);
-
 const prettyPrint = (node, prefix = "", isLeft = true) => {
 	if (node === null) {
 		return;
@@ -84,12 +79,20 @@ function insert(root, value) {
 	return root;
 }
 
-function deleteItem(root, value) {
-	if (root === null) return root;
-	
+function findInorderSuccessor(node) {
+	if (node.left !== null) {
+		node = node.left;
+	}
+	return node;
 }
+
+let data = [1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324];
+let data1 = [50, 30, 70, 20, 40, 60, 80];
+let data2 = [];
+let tree = buildTree(data1);
 
 /* insert(tree, 5);
 insert(tree, 33);
-insert(tree, 13);
-prettyPrint(tree); */
+insert(tree, 13);*/
+let res = deleteItem(tree, 30);
+prettyPrint(tree);
