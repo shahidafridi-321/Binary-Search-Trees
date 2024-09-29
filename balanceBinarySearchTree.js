@@ -61,6 +61,7 @@ const prettyPrint = (node, prefix = "", isLeft = true) => {
 
 // Inserts value to the tree using recursive way
 function insert(root, value) {
+	//BASE CASE
 	if (root === null) return Node(value); // if tree is empty create a ned node
 	if (value > root.data) {
 		root.right = insert(root.right, value); // if the value is greater than root value  insert in right sub-tree
@@ -97,6 +98,7 @@ function findInorderSuccessor(node) {
 
 // deletes item in a Tree
 function deleteItem(root, value) {
+	//BASE CASE
 	if (root === null) return root; // if the root is empty, nothing to delete
 
 	if (root.data > value) {
@@ -123,13 +125,14 @@ function deleteItem(root, value) {
 
 // finds a given node in the given tree
 function find(root, value) {
-	if (root == null) return root; // if tree is empty returns null
+	//BASE CASE
+	if (root == null) return root; // if tree is empty returns null/ value not found
 
 	if (root.data > value) {
 		root = find(root.left, value);
 	} else if (root.data < value) {
 		root = find(root.right, value);
-	}
+	} else return root;
 
 	return root;
 }
