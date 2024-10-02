@@ -110,7 +110,7 @@ function deleteItem(root, value) {
 		if (root.left === null) return root.right; // if his only right child
 		else if (root.right === null) return root.left; // if his only left child
 
-		// if his both the children nodes the find the in-order successor
+		// if his both the children nodes  find the in-order successor
 		// smallest value in the right sub-tree using findInorderSuccessor function
 		let temp = findInorderSuccessor(root.right);
 
