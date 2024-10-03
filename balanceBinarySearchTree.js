@@ -258,6 +258,16 @@ function rebalance(tree) {
 
 // Some data for testing
 
+// Returns an array of random numbers
+function arrayOfRandomNumbers() {
+	let array = [];
+	for (let i = 0; i < 10; i++) {
+		array.push(Math.floor(Math.random() * 100));
+	}
+	return array;
+}
+
+/* 
 let data = [1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324];
 let data1 = [2, 3, 5, 10];
 let unbalanceTree = {
@@ -285,7 +295,7 @@ prettyPrint(balancedTree);
 
 console.log(isBalance(balancedTree));
 
-/* 
+
 postOrder(tree, prettyPrint);
 
 console.log(tree);
