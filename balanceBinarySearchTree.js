@@ -204,6 +204,7 @@ function height(node) {
 	return (leftHeight > rightHeight ? leftHeight : rightHeight) + 1;
 }
 
+// Return depth of a node in a tree
 function depth(root, value) {
 	//BASE CASE
 	if (root == null) return -1;
@@ -223,16 +224,33 @@ function depth(root, value) {
 	return -1;
 }
 
+// Returns true if the tree is balance other wise false
+function isBalance(root) {
+	//BASE CASE
+	if (root == null) return true;
+
+	// takes the height of left sub-tree and right sub-tree
+	let leftHeight = height(root.left);
+	let rightHeight = height(root.right);
+
+	return (
+		// checks the difference between height of left and right sub-trees is less or equal to 1
+		// and recursively call for left and right sub-trees as they are also balanced
+		Math.abs(leftHeight - rightHeight) <= 1 &&
+		isBalance(root.left) &&
+		isBalance(root.right)
+	);
+}
+
 // Some data for testing
 let data = [1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324];
-let data1 = [50, 30, 70, 20, 40, 60, 80];
+let data1 = [2, 3, 5, 10];
 let data2 = [];
 let tree = buildTree(data1);
 
 /* postOrder(tree, prettyPrint); */
 
-let treeDepth = depth(tree, 30);
-console.log(treeDepth);
+console.log(isBalance(tree));
 
 /* insert(tree, 5);
 insert(tree, 33);
