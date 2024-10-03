@@ -37,7 +37,7 @@ function balancedBinarySearchTree(arr, start, end) {
 // Removes Duplicates of an array (helper function to buildTree function)
 function removeDuplicates(array) {
 	let newArray = [];
-	array = array.forEach((element) => {
+	array.forEach((element) => {
 		if (!newArray.includes(element)) {
 			newArray.push(element);
 		}
@@ -242,19 +242,55 @@ function isBalance(root) {
 	);
 }
 
+// Takes a tree sorts nodes of tree using inorder treversal
+// Builds a new Balance binary tree and returns it
+function rebalance(tree) {
+	// stores node of unbalance tree in sorted order
+	let sortedNodes = [];
+	// treverse the tree in inorder DFS
+	inOrder(tree, (node) => {
+		sortedNodes.push(node.data);
+	});
+	// build new balance binary tree
+	let balancedTree = buildTree(sortedNodes);
+	return balancedTree;
+}
+
 // Some data for testing
+
 let data = [1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324];
 let data1 = [2, 3, 5, 10];
-let data2 = [];
-let tree = buildTree(data1);
+let unbalanceTree = {
+	data: 10,
+	left: null,
+	right: {
+		data: 20,
+		left: null,
+		right: {
+			data: 30,
+			left: null,
+			right: {
+				data: 40,
+				left: null,
+				right: null,
+			},
+		},
+	},
+};
+prettyPrint(unbalanceTree);
+console.log(isBalance(unbalanceTree));
 
-/* postOrder(tree, prettyPrint); */
+let balancedTree = rebalance(unbalanceTree);
+prettyPrint(balancedTree);
 
-console.log(isBalance(tree));
+console.log(isBalance(balancedTree));
+
+/* 
+postOrder(tree, prettyPrint);
+
+console.log(tree);
 
 /* insert(tree, 5);
 insert(tree, 33);
 insert(tree, 13);
 let res = deleteItem(tree, 30);*/
-
-/* prettyPrint(rrr); */
