@@ -162,8 +162,13 @@ function levelOrder(root, callBack) {
 	}
 }
 
-function levelOrderRecursion(root, callBack) {
-	if (root == null) return;
+// trevese the tree in inOrder deep-first-search
+function inOrder(root, callBack) {
+	if (typeof callBack !== "function") throw new Error("callback is required"); // in case no callback is provided throws an error
+	if (root == null) return; // BASE CASE if root is null return
+	inOrder(root.left, callBack); // in inorder,go in left sub-tree
+	callBack(root); // call callback for root node node
+	inOrder(root.right, callBack); // go in right sub-tree
 }
 
 // Some data for testing
@@ -172,7 +177,7 @@ let data1 = [50, 30, 70, 20, 40, 60, 80];
 let data2 = [];
 let tree = buildTree(data1);
 
-levelOrderRecursion(tree, prettyPrint);
+inOrder(tree, prettyPrint);
 
 /* insert(tree, 5);
 insert(tree, 33);
