@@ -196,13 +196,25 @@ function postOrder(root, callBack) {
 	callBack(root);
 }
 
+// Returns height of a tree ,number of edges from root-node to leaf-node 
+function height(node) {
+	if (node == null) return -1;
+	let leftHeight = height(node.left);
+	let rightHeight = height(node.right);
+	return (leftHeight > rightHeight ? leftHeight : rightHeight) + 1;
+}
+
+
 // Some data for testing
 let data = [1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324];
 let data1 = [50, 30, 70, 20, 40, 60, 80];
 let data2 = [];
 let tree = buildTree(data1);
 
-postOrder(tree, prettyPrint);
+/* postOrder(tree, prettyPrint); */
+
+let treeHeight = height(tree);
+console.log(treeHeight);
 
 /* insert(tree, 5);
 insert(tree, 33);
