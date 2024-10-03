@@ -267,40 +267,30 @@ function arrayOfRandomNumbers() {
 	return array;
 }
 
-/* 
-let data = [1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324];
-let data1 = [2, 3, 5, 10];
-let unbalanceTree = {
-	data: 10,
-	left: null,
-	right: {
-		data: 20,
-		left: null,
-		right: {
-			data: 30,
-			left: null,
-			right: {
-				data: 40,
-				left: null,
-				right: null,
-			},
-		},
-	},
-};
-prettyPrint(unbalanceTree);
-console.log(isBalance(unbalanceTree));
+let array = arrayOfRandomNumbers();
+let binarySearchTree = buildTree(array);
 
-let balancedTree = rebalance(unbalanceTree);
-prettyPrint(balancedTree);
+/* levelOrder(binarySearchTree, (node) => console.log(node));
+inOrder(binarySearchTree, (node) => console.log(node));
+preOrder(binarySearchTree, (node) => console.log(node));
+postOrder(binarySearchTree, (node) => console.log(node)); */
 
-console.log(isBalance(balancedTree));
+// Unbalancing the tree
+insert(binarySearchTree, 120);
+insert(binarySearchTree, 130);
+insert(binarySearchTree, 140);
+insert(binarySearchTree, 150);
+insert(binarySearchTree, 160);
 
+console.log(isBalance(binarySearchTree));
+prettyPrint(binarySearchTree);
 
-postOrder(tree, prettyPrint);
+// Rebalancing the tree
+binarySearchTree = rebalance(binarySearchTree);
+console.log(isBalance(binarySearchTree));
+prettyPrint(binarySearchTree);
 
-console.log(tree);
-
-/* insert(tree, 5);
-insert(tree, 33);
-insert(tree, 13);
-let res = deleteItem(tree, 30);*/
+levelOrder(binarySearchTree, prettyPrint);
+inOrder(binarySearchTree, prettyPrint);
+preOrder(binarySearchTree, prettyPrint);
+postOrder(binarySearchTree, prettyPrint);
