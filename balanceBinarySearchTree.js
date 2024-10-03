@@ -162,7 +162,7 @@ function levelOrder(root, callBack) {
 	}
 }
 
-// trevese the tree in inOrder deep-first-search
+// Trevese the tree in inOrder deep-first-search
 function inOrder(root, callBack) {
 	if (typeof callBack !== "function") throw new Error("callback is required"); // in case no callback is provided throws an error
 	if (root == null) return; // BASE CASE if root is null return
@@ -171,13 +171,29 @@ function inOrder(root, callBack) {
 	inOrder(root.right, callBack); // go in right sub-tree
 }
 
+// Treverse the tree in preOrder DFS
+
+function preOrder(root, callBack) {
+	if (typeof callBack !== "function") throw new Error("Callback is required");
+	// BASE CASE
+	if (root == null) return;
+
+	// Treverse the tree in preorder DFS
+	callBack(root);
+	preOrder(root.left, callBack);
+	preOrder(root.right, callBack);
+}
+
+// Treverse the tree in postOrder DFS
+
+
 // Some data for testing
 let data = [1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324];
 let data1 = [50, 30, 70, 20, 40, 60, 80];
 let data2 = [];
 let tree = buildTree(data1);
 
-inOrder(tree, prettyPrint);
+postOrder(tree, prettyPrint);
 
 /* insert(tree, 5);
 insert(tree, 33);
