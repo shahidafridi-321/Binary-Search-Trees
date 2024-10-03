@@ -185,7 +185,16 @@ function preOrder(root, callBack) {
 }
 
 // Treverse the tree in postOrder DFS
+function postOrder(root, callBack) {
+	if (typeof callBack !== "function") throw new Error("Callback is required");
+	// BASE CASE
+	if (root == null) return;
 
+	// Treverse the tree in preorder DFS
+	postOrder(root.left, callBack);
+	postOrder(root.right, callBack);
+	callBack(root);
+}
 
 // Some data for testing
 let data = [1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324];
